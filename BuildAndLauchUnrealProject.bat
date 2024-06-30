@@ -1,7 +1,7 @@
 @echo off
 :: Убедитесь, что пути к Unreal Engine и проекту указаны правильно
-set UE_PATH=C:\Games\Epic Games\UE_5.4
-set PROJECT_PATH="C:\Git\HurryOrCry"
+set UE_PATH=D:\UE_5.4
+set PROJECT_PATH="D:\Git\HurryOrCry"
 set PROJECT_NAME=HurryOrCry
 
 :: Проверка и завершение процесса UnrealEditor.exe, если он существует
