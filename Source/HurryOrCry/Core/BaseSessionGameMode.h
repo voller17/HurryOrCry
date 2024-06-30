@@ -27,7 +27,6 @@ protected:
 	virtual void OnPlayersReady();
 	
 	virtual void StartCharacterSelection();
-	virtual void FinishCharacterSelection();
 	
 	virtual void StartPrepareBattle();
 	virtual void FinishPrepareBattle();
@@ -54,6 +53,8 @@ public:
 	virtual bool ReadyToEndMatch_Implementation() override;
 	virtual bool ReadyToStartMatch_Implementation() override;
 	virtual void Logout(AController* Exiting) override;
+	
+	virtual void FinishCharacterSelection();
 	
 	UFUNCTION(BlueprintCallable, BlueprintPure)
 	bool HasGameStarted() const;

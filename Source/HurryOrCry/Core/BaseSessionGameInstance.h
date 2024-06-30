@@ -15,6 +15,15 @@ class HURRYORCRY_API UBaseSessionGameInstance : public UGameInstance
 	GENERATED_BODY()
 	
 public:
-	UPROPERTY(BlueprintReadWrite)
-	FString PlayerName = FString{"CustomPlayerNameKiller"};
+
+	FString GetPlayerName();
+	UFUNCTION(BlueprintCallable)
+	void SetPlayerName(FString NewName);
+	
+protected:
+	UPROPERTY()
+	FString PlayerName = FString{"PlayerName"};
+
+	UPROPERTY()
+	TArray<FString> TestsPlayerName = {TEXT("Tokio"), TEXT("Berlin"), TEXT("Moscow"), TEXT("Helsinki"), TEXT("Oslo")};
 };

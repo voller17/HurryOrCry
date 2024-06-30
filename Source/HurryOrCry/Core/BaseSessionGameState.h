@@ -3,6 +3,7 @@
 #include "CoreMinimal.h"
 #include "BaseSessionPlayerState.h"
 #include "Defines.h"
+#include "LevelPoint.h"
 #include "GameFramework/GameState.h"
 #include "BaseSessionGameState.generated.h"
 
@@ -35,6 +36,8 @@ public:
 	virtual void OnWaitingForPlayersTimeOut();
 
 	virtual void OnPlayersReady();
+	
+	virtual void CheckPlayersIsReady();
 	
 	UFUNCTION(NetMulticast, Reliable)
 	void Multi_OnStartGameModeAnnouncementTimer();
@@ -100,6 +103,12 @@ public:
 	
 	UPROPERTY(BlueprintReadWrite, Category="Settings|Cheats")
 	bool bAllowCheatManager = true;
+
+	UPROPERTY(BlueprintReadOnly)
+	ALevelPoint* StartLevelPoint;
+
+	UPROPERTY(BlueprintReadOnly)
+	ALevelPoint* FinishLevelPoint;
 
 	UPROPERTY(BlueprintAssignable)
 	FSimpleEventSignature OnStartWaitingForPlayersDelegate;

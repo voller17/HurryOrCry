@@ -89,7 +89,6 @@ void ABaseSessionPlayerState::BeginPlay()
 		{
 			//GameState->OnTurnTimeOutDelegate.AddUniqueDynamic(this, &ABasePlayerState::OnTurnTimeOut); //ToDo
 			GameState->OnStartBattleDelegate.AddUniqueDynamic(this, &ABaseSessionPlayerState::Multi_OnStartBattle); //ToDo
-			
 		}
 	}
 	ClientGetCustomPlayerName();
@@ -111,26 +110,14 @@ void ABaseSessionPlayerState::ServerSelectCharacter_Implementation(const FString
 		{
 			SelectedCharacter = CharacterClass;
 			bIsCharacterSelected = true;
+			
+			if (ABaseSessionGameState* GameState = GetWorld()->GetGameState<ABaseSessionGameState>())
+			{
+				GameState->CheckPlayersIsReady();
+			}
 			UE_LOG(LogTemp, Log, TEXT("Character selected on server: %s"), *SelectedCharacter->GetName());
 		}
 	}
-/*
-	if (!NewSelectedCharacter)
-	{
-		UE_LOG(LogTemp, Log, TEXT("ABaseSessionPlayerState::ServerSelectCharacter_Implementation Is NoValid class"));
-		// Здесь можно добавить вашу логику, например, спавн нового персонажа или обновление существующего
-	}
-	else
-	{
-		if (HasAuthority())
-		{
-			SelectedCharacter = NewSelectedCharacter;
-			bIsCharacterSelected = true;
-			UE_LOG(LogTemp, Log, TEXT("Character class set to: %s"), *SelectedCharacter->GetName());
-			UE_LOG(LogTemp, Log, TEXT("Character selected on server: %s"), *SelectedCharacter->GetName());
-		}
-	}
-	*/
 }
 
 bool ABaseSessionPlayerState::ServerSelectCharacter_Validate(const FString& NewSelectedCharacter)
@@ -147,8 +134,8 @@ void ABaseSessionPlayerState::ServerSetCustomPlayerName_Implementation(const FSt
 
 void ABaseSessionPlayerState::ClientGetCustomPlayerName_Implementation()
 {
-	if(const UBaseSessionGameInstance* BaseSessionGameInstance = Cast<UBaseSessionGameInstance>(GetGameInstance()))
+	if(UBaseSessionGameInstance* BaseSessionGameInstance = Cast<UBaseSessionGameInstance>(GetGameInstance()))
 	{
-		ServerSetCustomPlayerName(BaseSessionGameInstance->PlayerName);
+		ServerSetCustomPlayerName(BaseSessionGameInstance->GetPlayerName());
 	}
 }

@@ -1,4 +1,6 @@
 ﻿#include "BaseSessionGameState.h"
+
+#include "BaseSessionGameMode.h"
 #include "Net/UnrealNetwork.h"
 
 ABaseSessionGameState::ABaseSessionGameState()
@@ -228,6 +230,21 @@ void ABaseSessionGameState::OnStartBattle()
 void ABaseSessionGameState::OnPlayersReady()
 {
 	OnFinishWaitingForPlayersDelegate.Broadcast();
+}
+
+void ABaseSessionGameState::CheckPlayersIsReady()
+{
+	for (const auto PlayerState : PlayerStates)
+	{
+		if(!PlayerState->IsCharacterSelected())
+		{
+			return;
+		}
+	}
+	if (ABaseSessionGameMode* GameMode = GetWorld()->GetAuthGameMode<ABaseSessionGameMode>())
+	{
+		GameMode->FinishCharacterSelection();
+	}
 }
 
 void ABaseSessionGameState::SetWinnerPlayer(ABaseSessionPlayerState* NewWinnerPlayer)
