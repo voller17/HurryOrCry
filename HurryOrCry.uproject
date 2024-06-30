@@ -7,7 +7,13 @@
 		{
 			"Name": "HurryOrCry",
 			"Type": "Runtime",
-			"LoadingPhase": "Default"
+			"LoadingPhase": "Default",
+			"AdditionalDependencies": [
+				"Core",
+				"Engine",
+				"SlateCore",
+				"UMG"
+			]
 		}
 	],
 	"Plugins": [
@@ -17,6 +23,11 @@
 			"TargetAllowList": [
 				"Editor"
 			]
+		},
+		{
+			"Name": "BlueprintAssist",
+			"Enabled": true,
+			"MarketplaceURL": ""
 		}
 	]
 }

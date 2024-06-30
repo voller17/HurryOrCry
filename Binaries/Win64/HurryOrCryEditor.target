@@ -6560,6 +6560,18 @@
 		{
 			"Path": "$(ProjectDir)/Binaries/Win64/UnrealEditor.modules",
 			"Type": "RequiredResource"
+		},
+		{
+			"Path": "$(ProjectDir)/Plugins/BlueprintAssist/Binaries/Win64/UnrealEditor-BlueprintAssist.dll",
+			"Type": "DynamicLibrary"
+		},
+		{
+			"Path": "$(ProjectDir)/Plugins/BlueprintAssist/Binaries/Win64/UnrealEditor-BlueprintAssist.pdb",
+			"Type": "SymbolFile"
+		},
+		{
+			"Path": "$(ProjectDir)/Plugins/BlueprintAssist/Binaries/Win64/UnrealEditor.modules",
+			"Type": "RequiredResource"
 		}
 	],
 	"RuntimeDependencies": [
@@ -29594,6 +29606,10 @@
 		{
 			"Path": "$(ProjectDir)/HurryOrCry.uproject",
 			"Type": "UFS"
+		},
+		{
+			"Path": "$(ProjectDir)/Plugins/BlueprintAssist/BlueprintAssist.uplugin",
+			"Type": "UFS"
 		}
 	],
 	"BuildPlugins": [
@@ -29623,6 +29639,7 @@
 		"BackChannel",
 		"BaseCharacterFXEditor",
 		"BlendSpaceMotionAnalysis",
+		"BlueprintAssist",
 		"BlueprintHeaderView",
 		"Bridge",
 		"CLionSourceCodeAccess",
