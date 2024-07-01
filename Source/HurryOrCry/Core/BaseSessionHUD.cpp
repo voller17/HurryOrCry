@@ -125,7 +125,24 @@ void ABaseSessionHUD::OnPlayerWin(ABaseSessionPlayerState* WinPlayer)
 {
 	if (WinPlayer)
 	{
-		//display normal victory widget ToDo
+		if (APlayerController* PlayerController = WinPlayer->GetOwner<APlayerController>(); PlayerController != nullptr)
+		{
+			// Show the mouse cursor
+			PlayerController->bShowMouseCursor = true;
+			// Set input mode to UI only
+			FInputModeUIOnly InputMode;
+			InputMode.SetLockMouseToViewportBehavior(EMouseLockMode::DoNotLock);
+			PlayerController->SetInputMode(InputMode);
+		}
+		HideBattleUI();
+		if (ClassShowWinnerWidget.Get())
+		{
+			ShowWinnerWidget = CreateWidget(GetOwningPlayerController(), ClassShowWinnerWidget);
+			if (ShowWinnerWidget)
+			{
+				ShowWinnerWidget->AddToViewport(1);
+			}
+		}
 	}
 }
 

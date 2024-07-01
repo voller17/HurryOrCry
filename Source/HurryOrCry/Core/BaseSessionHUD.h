@@ -35,10 +35,7 @@ public:
 	virtual void DisplayBattleUI();
 	UFUNCTION()
 	virtual void HideBattleUI();
-
 	
-
-
 	UFUNCTION()
 	virtual void OnPlayerWin(ABaseSessionPlayerState* WinPlayer);
 
@@ -61,6 +58,9 @@ public:
 	TSubclassOf<UUserWidget> ClassCharacterSelectionWidget;
 	
 	UPROPERTY(EditDefaultsOnly, Category="Settings")
+	TSubclassOf<UUserWidget> ClassShowWinnerWidget;
+	
+	UPROPERTY(EditDefaultsOnly, Category="Settings")
 	TSoftClassPtr<UBattleUIWidget> ClassBaseUIWidget;
 	
 	UPROPERTY()
@@ -71,6 +71,9 @@ public:
 
 	UPROPERTY()
 	UUserWidget* CharacterSelectionWidget;
+	
+	UPROPERTY()
+	UUserWidget* ShowWinnerWidget;
 
 	UPROPERTY()
 	UBattleUIWidget* BaseBattleUIWidget;

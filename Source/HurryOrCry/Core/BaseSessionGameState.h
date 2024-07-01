@@ -49,6 +49,8 @@ public:
 	virtual bool IsWaitingForPlayers() const;
 
 	virtual bool IsAnnouncingGameMode() const;
+	
+	virtual void SetWinnerPlayer(ABaseSessionPlayerState* NewWinnerPlayer);
 
 	UFUNCTION(BlueprintCallable, BlueprintPure)
 	virtual FString GetGameModeName() const;
@@ -69,8 +71,6 @@ protected:
 	virtual void OnStartPrepareBattle();
 	
 	virtual void OnStartBattle();
-
-	virtual void SetWinnerPlayer(ABaseSessionPlayerState* NewWinnerPlayer);
 	
 	UFUNCTION()
 	void OnRep_CurrentGamePhase();
@@ -83,6 +83,7 @@ protected:
 	void OnRep_TimeRemaining();
 	
 	//Returns winner player state if any
+	UFUNCTION(BlueprintCallable)
 	virtual ABaseSessionPlayerState* GetWinnerPlayer() const;
 	
 	UFUNCTION(NetMulticast, Reliable)

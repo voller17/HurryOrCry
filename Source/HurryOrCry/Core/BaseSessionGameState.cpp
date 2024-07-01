@@ -250,6 +250,7 @@ void ABaseSessionGameState::CheckPlayersIsReady()
 void ABaseSessionGameState::SetWinnerPlayer(ABaseSessionPlayerState* NewWinnerPlayer)
 {
 	WinnerPlayer = NewWinnerPlayer;
+	Auth_HandlePlayerVictory(NewWinnerPlayer);
 }
 
 ABaseSessionPlayerState* ABaseSessionGameState::GetWinnerPlayer() const
@@ -259,6 +260,7 @@ ABaseSessionPlayerState* ABaseSessionGameState::GetWinnerPlayer() const
 
 void ABaseSessionGameState::Multi_AnnounceVictory_Implementation(ABaseSessionPlayerState* Player)
 {
+	WinnerPlayer = Player;
 	OnPlayerWinDelegate.Broadcast(Player);
 }
 
